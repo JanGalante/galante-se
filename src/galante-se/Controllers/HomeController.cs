@@ -1,10 +1,18 @@
 ﻿using galante_se.Models;
+using galante_se.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace galante_se.Controllers
 {
     public class HomeController : Controller
     {
+        private IRestaurantData _restaurantData;
+
+        public HomeController(IRestaurantData restaurantData)
+        {
+            _restaurantData = restaurantData;
+        }
+
         //public IActionResult Index()
         //{
         //    return Content("Hello, from a controller");
@@ -25,7 +33,8 @@ namespace galante_se.Controllers
       
         public ViewResult Index()
         {
-            var model = new Restaurant { Id = 1, Name = "La Rambla" };
+            //var model = new Restaurant { Id = 1, Name = "La Rambla" };
+            var model = _restaurantData.GetAll();
             return View(model);
         }
     }

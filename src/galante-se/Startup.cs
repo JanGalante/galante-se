@@ -41,6 +41,7 @@ namespace galante_se
 
             //Domain services
             services.AddSingleton<IGreeter, Greeter>(); //Resolve IGreeter to Greeter
+            services.AddScoped<IRestaurantData, InMemoryRestaurantData>(); //The lifetime fro AddScoped is per http request
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

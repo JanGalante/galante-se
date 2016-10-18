@@ -1,4 +1,4 @@
-﻿@model galante_se.Models.Restaurant
+﻿@model IEnumerable<galante_se.Models.Restaurant>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,6 +6,15 @@
 </head>
 <body>
     <h1>Welcome!</h1>
-    <div>@Model.Name</div>
+    <table>
+        @foreach (var restaurant in Model)
+        {
+            <tr>
+                <td>@restaurant.Id</td>
+                <td>@restaurant.Name</td>
+            </tr>
+        }
+        
+    </table>
 </body>
 </html>
