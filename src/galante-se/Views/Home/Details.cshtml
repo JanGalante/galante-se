@@ -1,13 +1,10 @@
 ﻿@model galante_se.Models.Restaurant
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>@Model.Name</title>
-</head>
-<body>
-    <h1>@Model.Name</h1>
-    <div>@Model.Id</div>
-    <div>@Model.Cuisine</div>
-    @Html.ActionLink("To Home", "Index")
-</body>
-</html>
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<h1>@Model.Name</h1>
+<div>@Model.Id</div>
+<div>@Model.Cuisine</div>
+@Html.ActionLink("To Home", "Index")

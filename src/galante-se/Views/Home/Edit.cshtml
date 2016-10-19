@@ -1,0 +1,43 @@
+﻿@model galante_se.Models.Restaurant 
+
+@{
+    ViewBag.Title = $"Edit {Model.Name}";
+}
+
+<h1>Edit @Model.Name</h1>
+
+<form asp-actoin="Edit" method="post">
+    <div>
+        <label asp-for="Name"></label> <!--more clear then the html-helper, but is not strongly typed-->
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="Cuisine"></label>
+        <select asp-for="Cuisine" 
+                asp-items="@Html.GetEnumSelectList(typeof(CuisineType))">
+        </select>
+        <span asp-validation-for="Cuisine"></span>
+    </div>
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+</form>
+
+@*@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(model => model.Name)
+        <!--@Html.TextBoxFor(model => model.Name)-->
+        @Html.EditorFor(model => model.Name) <!--This try to get more info from the model then TextBoxFor-->
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+        <div>
+            @Html.LabelFor(model => model.Cuisine)
+            @Html.DropDownListFor(model => model.Cuisine, Html.GetEnumSelectList(typeof(CuisineType)))
+            @Html.ValidationMessageFor(model => model.Cuisine)
+        </div>
+        <div>
+            <input type="submit" value="Save" />
+        </div>
+}*@

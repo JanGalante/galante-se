@@ -1,21 +1,22 @@
 ﻿@model galante_se.ViewModels.HomePageViewModel
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Home</title>
-</head>
-<body>
-    <h1>Welcome!</h1>
-    <h3>@Model.Greeting</h3>
-    <table>
-        @foreach (var restaurant in Model.Restaurants)
-        {
-            <tr>
-                <td>@Html.ActionLink(restaurant.Id.ToString(), "Details", new { id = restaurant.Id })</td>
-                <td>@restaurant.Name</td>
-            </tr>
-        }
-        
-    </table>
-</body>
-</html>
+@{ 
+    ViewBag.Title = "Home";
+}
+
+<h1>Welcome!</h1>
+
+@foreach (var restaurant in Model.Restaurants)
+{
+    @Html.Partial("_Summary", restaurant)
+}
+
+
+<div>
+    @*using a taghelper instead if html-helper*@
+    <a asp-controller="Home" asp-action="Create">Create</a>
+</div>
+
+@*@section footer{
+    <div>@Model.Greeting</div>
+}*@

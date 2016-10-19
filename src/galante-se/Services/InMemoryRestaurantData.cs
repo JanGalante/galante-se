@@ -38,5 +38,11 @@ namespace galante_se.Services
         {
             return _restaurants;
         }
+
+        public void Update(Restaurant updatedRestaurant)
+        {
+            var restaurant = _restaurants.Find(item => item.Id == updatedRestaurant.Id);
+            restaurant = updatedRestaurant;
+        }
     }
 }

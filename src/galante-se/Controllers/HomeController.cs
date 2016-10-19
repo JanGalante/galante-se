@@ -49,6 +49,34 @@ namespace galante_se.Controllers
         }
 
         [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var model = _restaurantData.Get(id);
+            if (model == null)
+            {
+                 return RedirectToAction("Index");
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, RestaurantEditViewModel input)
+        {
+            var restaurant = _restaurantData.Get(id);
+            if (restaurant == null || !ModelState.IsValid)
+            {
+                return View(restaurant);
+            }
+            
+            restaurant.Name = input.Name;
+            restaurant.Cuisine = input.Cuisine;
+            _restaurantData.Update(restaurant);
+
+            return RedirectToAction("Details", new { id = restaurant.Id });
+        }
+
+        [HttpGet]
         public ViewResult Create()
         {
             return View();

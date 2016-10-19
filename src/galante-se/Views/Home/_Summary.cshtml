@@ -1,0 +1,15 @@
+﻿@model galante_se.Models.Restaurant
+
+<section>
+    <h3>@Model.Name</h3>
+    <div>
+        @Model.Cuisine
+    </div>
+    <div>
+        <a asp-action="Details" asp-route-id="@Model.Id">Details</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+
+        @*action link*@
+        @*@Html.ActionLink(restaurant.Id.ToString(), "Details", new { id = restaurant.Id })*@
+    </div>
+</section>
