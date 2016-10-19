@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using galante_se.Services;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.PlatformAbstractions;
+using System.IO;
 
 namespace galante_se
 {
@@ -60,6 +62,7 @@ namespace galante_se
             //app.UseDefaultFiles(); //default/reroute "/" to index.html
             //app.UseStaticFiles(); //Makes it possible to serve static files like index.html
             app.UseFileServer(); //Combines UseDefaultFiles and UseStaticFiles in correct order
+            app.UseNodeModules(env);
 
             //app.UseMvcWithDefaultRoute();
             app.UseMvc(ConfigureRoutes);
