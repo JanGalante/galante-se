@@ -1,0 +1,30 @@
+﻿@using galante_se.Models
+@model galante_se.Models.Restaurant
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Create</title>
+</head>
+<body>
+    <h1>Create</h1>
+    
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.LabelFor(model => model.Name)
+            @*@Html.TextBoxFor(model => model.Name)*@
+            @Html.EditorFor(model => model.Name) @*This try to get more info from the model then TextBoxFor*@
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Cuisine)
+            @Html.DropDownListFor(model => model.Cuisine, Html.GetEnumSelectList(typeof(CuisineType)))
+            @Html.ValidationMessageFor(model => model.Cuisine)
+        </div>
+        <div>
+            <input type="submit" value="Save" />
+        </div>
+    }
+
+</body>
+</html>

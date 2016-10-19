@@ -2,6 +2,9 @@
 using galante_se.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
+using galante_se.ViewModels.InputViewModels;
+using galante_se.Models;
+using System.Linq;
 
 namespace galante_se.Controllers
 {
@@ -33,7 +36,7 @@ namespace galante_se.Controllers
         //    return new ObjectResult(model); //Serilize (xml/json/...) the object based on configuration or default to json
         //}
 
-      
+
         public ViewResult Index()
         {
             //var model = new Restaurant { Id = 1, Name = "La Rambla" };
@@ -43,6 +46,37 @@ namespace galante_se.Controllers
             model.Greeting = _greeter.GetGreeting();
 
             return View(model);
+        }
+
+        [HttpGet]
+        public ViewResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(RestaurantEditViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                //if model is not valid, show the same form so that the user can
+                //enter valid data
+                return View();
+            }
+
+            var restaurant = new Restaurant
+            {
+                Name = model.Name,
+                Cuisine = model.Cuisine
+            };
+
+            _restaurantData.Add(restaurant);
+            var addedRestaurant = _restaurantData.GetAll().LastOrDefault();
+
+            //return View("Details", restaurant);
+            //Using the POST Redirect Get pattern så that the user can update 
+            //the page without sending another request
+            return RedirectToAction("Details", new { id = addedRestaurant.Id });
         }
 
         public IActionResult Details(int id)
