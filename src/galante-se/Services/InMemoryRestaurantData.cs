@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using galante_se.Models;
+using System.Linq;
 
 namespace galante_se.Services
 {
@@ -19,6 +20,11 @@ namespace galante_se.Services
                 new Restaurant { Id = 3, Name = "Bistro Sud" },
                 new Restaurant { Id = 4, Name = "Paladar" }
             };
+        }
+
+        public Restaurant Get(int id)
+        {
+            return _restaurants.FirstOrDefault(restaurant => restaurant.Id == id);
         }
 
         public IEnumerable<Restaurant> GetAll()
