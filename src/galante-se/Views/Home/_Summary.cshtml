@@ -1,12 +1,12 @@
 ﻿@model galante_se.Models.Restaurant
 
-<section class="panel panel-default">
+<section class="panel panel-primary">
     <div class="panel-heading">@Model.Name</div>
     <div class="panel-body">
         @Model.Cuisine
         <div>
-            <a class="btn btn-default" asp-action="Details" asp-route-id="@Model.Id">Details</a>
-            <a class="btn btn-default" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+            <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.Id">Details</a>
+            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
 
             @*action link*@
             @*@Html.ActionLink(restaurant.Id.ToString(), "Details", new { id = restaurant.Id })*@
